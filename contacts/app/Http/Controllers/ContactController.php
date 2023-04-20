@@ -13,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts=Contact::all();
+        return view('contacts.index')->with('contacts',$contacts);
     }
 
     /**
@@ -21,7 +22,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        Contact::create($request->validated());
+        return back()->with('success','Contact Added Succesfully');
     }
 
     /**
@@ -37,7 +39,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contacts.show')->with('contact',$contact);
     }
 
     /**
@@ -45,7 +47,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit')->with('contact',$contact);
+
     }
 
     /**
@@ -53,7 +56,9 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        
+        $contact->update($request->validated());
+        return back()->with('success','Contact Edited Succesfully');
     }
 
     /**
@@ -61,6 +66,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return back()->with('success','Contact Deleted Succesfully');
     }
 }
