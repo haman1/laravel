@@ -58,7 +58,7 @@ class ContactController extends Controller
     {
         
         $contact->update($request->validated());
-        return back()->with('success','Contact Edited Succesfully');
+        return back()->with('success','Contact Edited Successfully');
     }
 
     /**
@@ -67,6 +67,6 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return back()->with('success','Contact Deleted Succesfully');
+        return back()->with('success','Contact Deleted Successfully');
     }
 }
